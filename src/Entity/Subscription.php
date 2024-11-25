@@ -30,9 +30,16 @@ class Subscription
     #[ORM\OneToMany(targetEntity: User::class, mappedBy: 'currentSubscription')]
     private Collection $users;
 
+    /**
+     * @var Collection<int, User>
+     */
+    #[ORM\OneToMany(targetEntity: User::class, mappedBy: 'users')]
+    private Collection $userssub;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
+        $this->userssub = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -100,6 +107,36 @@ class Subscription
             // set the owning side to null (unless already changed)
             if ($user->getCurrentSubscription() === $this) {
                 $user->setCurrentSubscription(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getUserssub(): Collection
+    {
+        return $this->userssub;
+    }
+
+    public function addUserssub(User $userssub): static
+    {
+        if (!$this->userssub->contains($userssub)) {
+            $this->userssub->add($userssub);
+            $userssub->setUsers($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUserssub(User $userssub): static
+    {
+        if ($this->userssub->removeElement($userssub)) {
+            // set the owning side to null (unless already changed)
+            if ($userssub->getUsers() === $this) {
+                $userssub->setUsers(null);
             }
         }
 
