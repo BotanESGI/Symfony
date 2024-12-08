@@ -7,13 +7,16 @@ namespace App\Controller\Movie;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use App\Entity\Movie;
 
 class MovieController extends AbstractController
 {
-    #[Route(path: '/movie', name: 'page_detail_movie')]
-    public function detail(): Response
+    #[Route(path: '/movie/{id}', name: 'page_detail_movie')]
+    public function detail(Movie $movie): Response
     {
-        return $this->render(view: 'movie/detail.html.twig');
+        return $this->render('movie/detail.html.twig', [
+            'movie' => $movie
+        ]);
     }
 
     #[Route(path: '/serie', name: 'page_detail_serie')]
