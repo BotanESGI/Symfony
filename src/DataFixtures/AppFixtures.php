@@ -98,7 +98,7 @@ class AppFixtures extends Fixture
     {
         for ($j = 0; $j < self::MAX_MEDIA; $j++) {
             $media = random_int(min: 0, max: 1) === 0 ? new Movie() : new Serie();
-            $title = $media instanceof Movie ? 'Film' : 'Série';
+            $title = $media instanceof Movie ? 'movie' : 'serie';
 
             $media->setTitle(title: "{$title} n°$j");
             $media->setLongDescription(longDescription: "Longue description $j");
