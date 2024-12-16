@@ -6,7 +6,7 @@ namespace App\Enum;
 
 enum CommentStatusEnum: string
 {
-    case PENDING = 'pending';
-    case VALIDATED = 'validated';
-    case REJECTED = 'rejected';
+    case PENDING = 'PENDING';
+    case VALIDATED = 'VALIDATED';
+    case REJECTED = 'REJECTED';
 }

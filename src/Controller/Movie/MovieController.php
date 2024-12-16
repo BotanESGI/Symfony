@@ -25,8 +25,11 @@ class MovieController extends AbstractController
             return $this->redirectToRoute('page_homepage');
         }
 
+        $languages = $movie->getLanguages();
+
         return $this->render('movie/detail.html.twig', [
             'movie' => $movie,
+            'languages' => $languages,
         ]);
     }
 
