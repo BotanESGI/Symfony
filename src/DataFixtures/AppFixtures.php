@@ -96,7 +96,7 @@ class AppFixtures extends Fixture
 
     protected function createMedia(ObjectManager $manager, array &$medias): void
     {
-        for ($j = 0; $j < self::MAX_MEDIA; $j++) {
+        for ($j = 1; $j < self::MAX_MEDIA; $j++) {
             $media = random_int(min: 0, max: 1) === 0 ? new Movie() : new Serie();
             $title = $media instanceof Movie ? 'movie' : 'serie';
 
