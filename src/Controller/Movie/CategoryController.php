@@ -41,11 +41,26 @@ class CategoryController extends AbstractController
     }
 
     #[Route(path: '/discover', name: 'page_discover')]
-    public function discover(CategoryRepository $categoryRepository): Response
+    public function discover(CategoryRepository $categoryRepository, MediaRepository $mediaRepository): Response
     {
+        $movies = $mediaRepository->findAll();
+        $recommendedMovies = [];
+        if (count($movies) > 3)
+        {
+            $randomKeys = array_rand($movies, 3);
+            foreach ($randomKeys as $key)
+            {
+                $recommendedMovies[] = $movies[$key];
+            }
+        }
+        else
+        {
+            $recommendedMovies = $movies;
+        }
         $categories = $categoryRepository->findAll();
         return $this->render('movie/discover.html.twig', [
             'categories' => $categories,
+            'recommendedMovies' => $recommendedMovies,
         ]);
     }
 }
