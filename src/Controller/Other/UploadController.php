@@ -7,7 +7,7 @@ namespace App\Controller\Other;
 use App\Entity\Upload;
 use App\Form\UploadType;
 use App\Repository\UploadRepository;
-use App\Service\FileUploader;
+use App\Service\FileUploader; // Assurez-vous que le chemin est correct
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
@@ -54,9 +54,5 @@ class UploadController extends AbstractController
         return $this->json([
             'message' => 'Upload successful!',
         ]);
-
-        return $this->json([
-            'message' => 'Upload failed!',
-        ], Response::HTTP_BAD_REQUEST);
     }
 }

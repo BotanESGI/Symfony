@@ -46,13 +46,21 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'json', nullable: false)]
     private array $roles = [];
 
+    private Collection $uploads;
+
     // Additional fields for relationships...
 
     public function __construct()
     {
         $this->comments = new ArrayCollection();
         $this->roles = ['ROLE_USER'];
+        $this->uploads = new ArrayCollection();
         // Initialize other collections if required...
+    }
+
+    public function getUploads(): Collection
+    {
+        return $this->uploads;
     }
 
     public function getId(): ?int

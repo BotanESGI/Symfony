@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Entity;
 
 use App\Repository\UploadRepository;
@@ -16,13 +15,13 @@ class Upload
 
     #[ORM\ManyToOne(inversedBy: 'uploads')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?User $uploadedBy = null;
+    private ?User $uploadedBy = null;  // L'utilisateur qui a uploadé l'image
 
-    #[ORM\Column]
-    private ?\DateTimeImmutable $uploadedAt = null;
+    #[ORM\Column(type: 'datetime_immutable')]
+    private ?\DateTimeImmutable $uploadedAt = null;  // Date de l'upload
 
     #[ORM\Column(length: 255)]
-    private ?string $url = null;
+    private ?string $url = null;  // URL de l'image
 
     public function __construct()
     {
@@ -42,7 +41,6 @@ class Upload
     public function setUploadedBy(?User $uploadedBy): static
     {
         $this->uploadedBy = $uploadedBy;
-
         return $this;
     }
 
@@ -54,31 +52,6 @@ class Upload
     public function setUploadedAt(\DateTimeImmutable $uploadedAt): static
     {
         $this->uploadedAt = $uploadedAt;
-
-        return $this;
-    }
-
-    public function getCategory(): ?string
-    {
-        return $this->category;
-    }
-
-    public function setCategory(string $category): static
-    {
-        $this->category = $category;
-
-        return $this;
-    }
-
-    public function getAlt(): ?string
-    {
-        return $this->alt;
-    }
-
-    public function setAlt(string $alt): static
-    {
-        $this->alt = $alt;
-
         return $this;
     }
 
@@ -90,7 +63,6 @@ class Upload
     public function setUrl(string $url): static
     {
         $this->url = $url;
-
         return $this;
     }
 }
