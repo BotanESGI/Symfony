@@ -14,10 +14,10 @@ class ResetPasswordRequest implements ResetPasswordRequestInterface
 
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column]
+    #[ORM\Column(type: 'integer')]
     private ?int $id = null;
 
-    #[ORM\ManyToOne]
+    #[ORM\ManyToOne(targetEntity: User::class)]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
@@ -35,5 +35,15 @@ class ResetPasswordRequest implements ResetPasswordRequestInterface
     public function getUser(): User
     {
         return $this->user;
+    }
+
+    public function getRequestedAt(): \DateTimeInterface
+    {
+        return $this->requestedAt;
+    }
+
+    public function setRequestedAt(\DateTimeInterface $requestedAt): void
+    {
+        $this->requestedAt = $requestedAt;
     }
 }

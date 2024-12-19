@@ -2,7 +2,7 @@ security:
     # https://symfony.com/doc/current/security.html#registering-the-user-hashing-passwords
     password_hashers:
         App\Entity\User:
-            algorithm: 'plaintext'
+            algorithm: 'bcrypt' 
     # https://symfony.com/doc/current/security.html#loading-the-user-the-user-provider
     providers:
         users_in_memory: { memory: null }
@@ -11,8 +11,10 @@ security:
                 class: App\Entity\User
                 property: email
     role_hierarchy:
-        ROLE_USER: ROLE_USER
-        ROLE_SUPER_ADMIN: ROLE_ADMIN
+        ROLE_USER: [ ]
+        ROLE_ADMIN: [ ROLE_USER ]
+        ROLE_BANNED: [ ]
+
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/

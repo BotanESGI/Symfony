@@ -34,8 +34,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToOne(inversedBy: 'users')]
     private ?Subscription $currentSubscription = null;
 
-    private ?array $roles = null;
-
     /**
      * @var Collection<int, Comment>
      */
@@ -45,11 +43,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $profilePicture = '';
 
+    #[ORM\Column(type: 'json', nullable: false)]
+    private array $roles = [];
+
     // Additional fields for relationships...
 
     public function __construct()
     {
         $this->comments = new ArrayCollection();
+        $this->roles = ['ROLE_USER'];
         // Initialize other collections if required...
     }
 
@@ -76,13 +78,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function getRoles(): array
     {
-        // Return default roles if roles are not dynamically set.
-        return $this->roles ?? ['ROLE_USER'];
+        return $this->roles;
     }
 
-    /**
-     * Sets roles for the user (if dynamically managed).
-     */
     public function setRoles(array $roles): self
     {
         $this->roles = $roles;

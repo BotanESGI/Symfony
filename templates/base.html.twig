@@ -18,7 +18,7 @@
 {% endfor %}
 <div class="flex min-h-screen  2xl:max-w-screen-2xl 2xl:mx-auto 2xl:border-x-2 2xl:border-gray-200">
     {% include 'parts/left-menu.html.twig' %}
-    {% if app.request.attributes.get('_route') == 'login' %}
+    {% if app.request.attributes.get('_route') == 'login' or app.request.attributes.get('_route') == 'forgot-password' or app.request.attributes.get('_route') == 'reset-password' %}
         <main class="flex-1">
     {% else %}
         <main class="flex-1 py-10 px-5 sm:px-10">
@@ -36,7 +36,7 @@
         </header>
         {% block content %}{% endblock %}
     </main>
-    {% if app.request.attributes.get('_route') != 'login' %}
+    {% if app.request.attributes.get('_route') != 'login' and app.request.attributes.get('_route') != 'forgot-password' and app.request.attributes.get('_route') != 'reset-password'%}
         {% include 'parts/right-sidebar.html.twig' %}
     {% endif %}
 </div>

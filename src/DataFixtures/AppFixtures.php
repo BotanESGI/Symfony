@@ -134,11 +134,14 @@ class AppFixtures extends Fixture
             $hashedPassword = $this->passwordHasher->hashPassword($user, 'coucou');
             $user->setPassword($hashedPassword);
             $user->setAccountStatus(accountStatus: UserAccountStatusEnum::ACTIVE);
+            $user->setRoles(['ROLE_USER']);
+
             $users[] = $user;
 
             $manager->persist(object: $user);
         }
     }
+
 
     public function createPlaylists(ObjectManager $manager, array $users, array &$playlists): void
     {

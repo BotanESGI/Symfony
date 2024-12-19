@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Language Index{% endblock %}
+
+{% block body %}
+    <div class="container mx-auto px-4 py-6">
+        <h1 class="text-2xl font-bold mb-4">Language Index</h1>
+
+        <table class="min-w-full bg-white border border-gray-200 rounded shadow-md">
+            <thead>
+            <tr class="bg-gray-200">
+                <th class="py-2 px-4 border-b">Id</th>
+                <th class="py-2 px-4 border-b">Nom</th>
+                <th class="py-2 px-4 border-b">Code</th>
+                <th class="py-2 px-4 border-b">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for language in languages %}
+                <tr class="hover:bg-gray-100">
+                    <td class="py-2 px-4 border-b">{{ language.id }}</td>
+                    <td class="py-2 px-4 border-b">{{ language.nom }}</td>
+                    <td class="py-2 px-4 border-b">{{ language.code }}</td>
+                    <td class="py-2 px-4 border-b">
+                        <a href="{{ path('app_language_show', {'id': language.id}) }}" class="text-blue-500 hover:underline">show</a>
+                        <a href="{{ path('app_language_edit', {'id': language.id}) }}" class="text-blue-500 hover:underline">edit</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="4" class="text-center py-2">No records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="mt-4">
+            <a href="{{ path('app_language_new') }}" class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">Create new</a>
+        </div>
+    </div>
+{% endblock %}

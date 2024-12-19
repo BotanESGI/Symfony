@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Create New Language{% endblock %}
+
+{% block body %}
+    <div class="container mx-auto px-4 py-6">
+        <h1 class="text-2xl font-bold mb-4">Create New Language</h1>
+
+        {{ include('language/_form.html.twig') }}
+
+        <div class="mt-4">
+            <a href="{{ path('app_language_index') }}" class="text-blue-500 hover:underline">back to list</a>
+        </div>
+    </div>
+{% endblock %}

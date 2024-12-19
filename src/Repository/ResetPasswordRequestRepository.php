@@ -1,5 +1,7 @@
 <?php
 
+// src/Repository/ResetPasswordRequestRepository.php
+
 namespace App\Repository;
 
 use App\Entity\ResetPasswordRequest;
