@@ -14,9 +14,18 @@ class SubscriptionController extends AbstractController
     #[Route('/subscriptions', name: 'page_subscription')]
     public function index(SubscriptionRepository $subscriptionRepository): Response
     {
+        $user = $this->getUser();
+        if ($user) {
+            $currentSubscription = $user->getCurrentSubscription();
+        }
+        else
+        {
+            $currentSubscription = "Aucun";
+        }
         $subscriptions = $subscriptionRepository->findAll();
         return $this->render('other/abonnements.html.twig', [
             'subscriptions' => $subscriptions,
+            'currentSubscription' => $currentSubscription,
         ]);
     }
 }

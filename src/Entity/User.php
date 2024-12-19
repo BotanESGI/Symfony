@@ -66,6 +66,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->email; // Use a unique field, like email.
     }
 
+    public function getCurrentSubscription(): ?Subscription
+    {
+        return $this->currentSubscription;
+    }
+
     /**
      * Returns the roles granted to the user.
      */

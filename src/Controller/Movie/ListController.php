@@ -13,6 +13,10 @@ class ListController extends AbstractController
     #[Route('/lists', name: 'page_lists')]
     public function index(): Response
     {
+        if (!$this->getUser()) {
+            $this->addFlash('error', 'Vous devez être connecté pour accéder à cette page.');
+            return $this->redirectToRoute('page_homepage');
+        }
         return $this->render('movie/lists.html.twig');
     }
 }

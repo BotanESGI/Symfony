@@ -25,14 +25,15 @@
 
         <div class="mt-8 text-gray-400/70 font-medium uppercase">General</div>
         {% if app.user %}
-            {{ macros.active_link('Déconnexion', '#', '<g><path d="M17 6l-1.41 1.41L20.17 12H4v2h16.17l-4.58 4.59L17 18l6-6-6-6Z"></path></g>') }}
+            {{ macros.active_link('Déconnexion', 'logout', '<g> <path d="M16 13v-2H7V8l-5 4 5 4v-3Z"></path>
+                    <path d="M20 3h-9c-1.11 0-2 .89-2 2v4h2V5h9v14h-9v-4H9v4c0 1.1.89 2 2 2h9c1.1 0 2-.9 2-2V5c0-1.11-.9-2-2-2Z"></path></g>') }}
         {% else %}
             {{ macros.active_link('Page Connexion', 'login', ' <g>
-                        <path d="M16 13v-2H7V8l-5 4 5 4v-3Z"></path>
+                                                <path d="M16 13v-2H7V8l-5 4 5 4v-3Z"></path>
                         <path d="M20 3h-9c-1.11 0-2 .89-2 2v4h2V5h9v14h-9v-4H9v4c0 1.1.89 2 2 2h9c1.1 0 2-.9 2-2V5c0-1.11-.9-2-2-2Z"></path>
                     </g>') }}
             {{ macros.active_link('Page Inscription', 'register', ' <g>
-                        <path d="M16 13v-2H7V8l-5 4 5 4v-3Z"></path>
+                         <path d="M16 13v-2H7V8l-5 4 5 4v-3Z"></path>
                         <path d="M20 3h-9c-1.11 0-2 .89-2 2v4h2V5h9v14h-9v-4H9v4c0 1.1.89 2 2 2h9c1.1 0 2-.9 2-2V5c0-1.11-.9-2-2-2Z"></path>
                     </g>') }}
         {% endif %}
