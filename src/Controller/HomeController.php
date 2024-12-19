@@ -23,8 +23,9 @@ class HomeController extends AbstractController
     public function home(MediaRepository $mediaRepository): Response
     {
         $movies = $mediaRepository->findAll();
+        $popularMovies = $mediaRepository->findPopular(10);
         return $this->render('index.html.twig', [
-            'movies' => $movies
+            'movies' => $popularMovies
         ]);
     }
 }

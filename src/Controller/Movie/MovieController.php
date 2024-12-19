@@ -9,13 +9,15 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use App\Entity\Media;
 use App\Repository\MediaRepository;
+use App\Repository\WatchHistoryRepository;
 
 class MovieController extends AbstractController
 {
     #[Route(path: '/movie/{id}', name: 'page_detail_movie')]
-    public function detail($id, MediaRepository $mediaRepository): Response
+    public function detail($id, MediaRepository $mediaRepository, WatchHistoryRepository $watchHistoryRepository): Response
     {
         $movie = $mediaRepository->find($id);
+        $numberOfViews = $watchHistoryRepository->countViewsByMediaId($id);
         if (!$movie) {
             $this->addFlash('error', sprintf(
                 'Le film avec l\'ID %d que vous avez demandé n\'existe pas.',
@@ -30,6 +32,7 @@ class MovieController extends AbstractController
         return $this->render('movie/detail.html.twig', [
             'movie' => $movie,
             'languages' => $languages,
+            'numberOfViews' => $numberOfViews,
         ]);
     }
 

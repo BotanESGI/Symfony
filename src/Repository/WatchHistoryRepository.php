@@ -16,6 +16,17 @@ class WatchHistoryRepository extends ServiceEntityRepository
         parent::__construct($registry, WatchHistory::class);
     }
 
+
+    public function countViewsByMediaId($mediaId)
+    {
+        return $this->createQueryBuilder('w')
+            ->select('SUM(w.numberOfViews)')
+            ->where('w.media = :mediaId')
+            ->setParameter('mediaId', $mediaId)
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
     //    /**
     //     * @return WatchHistory[] Returns an array of WatchHistory objects
     //     */
